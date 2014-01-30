@@ -74,7 +74,7 @@
       <ul>
         <li><a href="#slide-2">Galleon Project Overview</a></li>
         <li><a href="#slide-3">Galleon Development Workflow</a></li>
-        <li>Continuous Integration</li>
+        <li><a href="#slide-7">Continuous Integration</a></li>
         <li>Deployments</li>
         <li>Next Steps</li>
       </ul>
@@ -132,9 +132,31 @@
       <ul>
         <li>Creating patch releases for production issues is easy because daily work doesn't affect <code>master</code></li>
         <li>Creating QA-able builds for beta deployments is easy because only fully-implemented user stories are merged into <code>develop</code></li>
-        <li>Creating QA-able builds for beta deployments is easy because only fully-implemented user stories are merged into <code>develop</code></li>
         <li>It's easy to work on multiple user stories because each story is isolated in its own feature branch</li>
         <li>We can use pull requests to perform code reviews before code is merged into <code>develop</code></li>
+      </ul>
+    </section>
+
+    <section class="slide">
+      <h4 style="margin-top:200px;">We now have a rapid cycle from feature branch to develop, but how do we turn that into a build?</h4>
+    </section>
+
+    <section class="slide">
+      <h2>Continuous Integration</h2>
+      <ul>
+        <li>Jenkins polls github and will build each branch that changes</li>
+        <li>The build job will compile, minify, and run our unit test suite across our supported browser matrix</li>
+        <li>Developers must link to the successful Jenkins build for their feature branch during a pull request</li>
+      </ul>
+    </section>
+
+    <section class="slide">
+      <h2>Continuous Integration (cont)</h2>
+      <h3>What does CI buy us?</h3>
+      <ul>
+        <li>All unit tests and static code checks must demonstratably pass before work can be merged</li>
+        <li>"It passes on my box!" is no longer an issue</li>
+        <li>Code changes require unit test coverage to pass code review</li>
       </ul>
     </section>
 
