@@ -72,8 +72,8 @@
     <section class="slide">
       <h2>Table of Contents</h2>
       <ul>
-        <li>Galleon Project Overview</li>
-        <li>Galleon Development Workflow</li>
+        <li><a href="#slide-2">Galleon Project Overview</a></li>
+        <li><a href="#slide-3">Galleon Development Workflow</a></li>
         <li>Continuous Integration</li>
         <li>Deployments</li>
         <li>Next Steps</li>
@@ -90,10 +90,52 @@
         <img style="display: inline;" height="128" width="128" src="images/github.png" alt="github" />
         <img style="display: inline;" height="128" width="128" src="images/coffeescript.png" alt="CS" />
         <img style="display: inline;" height="128" width="128" src="images/angular.jpeg" alt="angularjs" />
+        <img style="display: inline;" height="128" width="128" src="images/less.png" alt="LESS" />
         <img style="display: inline;" height="128" width="128" src="images/grunt.jpeg" alt="grunt" />
         <img style="display: inline;" height="128" width="128" src="images/bower.png" alt="bower" />
-        <img style="display: inline;" height="128" width="128" src="images/less.png" alt="LESS" />
       </div>
+    </section>
+
+    <section class="slide">
+      <h2>Galleon Development Workflow</h2>
+      <h3>Git Flow - <a href="http://nvie.com/posts/a-successful-git-branching-model/">http://nvie.com/posts/a-successful-git-branching-model/</a></h3>
+      <ul>
+        <li>One branch <code>master</code> tracks what is production-ready</li>
+        <li>One branch <code>develop</code> tracks the current active line of development</li>
+        <li>Many "feature" branches track specific user stories
+          <ul>
+            <li>Feature branches isolate in-progress work from QE and PM acceptance</li>
+            <li>They are a short-lived sandbox so atomic units of work can be merged into <code>develop</code></li>
+          </ul>
+        </li>
+      </ul>
+    </section>
+
+    <section class="slide">
+      <h2>Galleon Development Workflow (cont)</h2>
+      <h3>A developer's daily work pattern with git flow</h3>
+      <ul>
+        <li><code>git pull</code> to update my local <code>develop</code> branch with everyone's merged work</li>
+        <li><code>git checkout -b my-next-user-story</code> to create a feature branch for my upcoming work</li>
+        <li><em>code, code, code, code, test, code, existential crisis, test...</em></li>
+        <li><code>git add -A && git commit -m "All done!"</code> to stage my feature work</li>
+        <li><code>git push -u origin my-cool-feature</code> to publish my feature branch on github</li>
+        <li>Browse to github and open a "pull request" to start my code review</li>
+        <li><em>review, update, update, review, debate, accept pull request</em></li>
+        <li>Merge <code>my-next-user-story</code> into <code>develop</code> so we can deploy, test, and accept the story</li>
+      </ul>
+    </section>
+
+    <section class="slide">
+      <h2>Galleon Development Workflow (cont)</h2>
+      <h3>Benefits of git flow</h3>
+      <ul>
+        <li>Creating patch releases for production issues is easy because daily work doesn't affect <code>master</code></li>
+        <li>Creating QA-able builds for beta deployments is easy because only fully-implemented user stories are merged into <code>develop</code></li>
+        <li>Creating QA-able builds for beta deployments is easy because only fully-implemented user stories are merged into <code>develop</code></li>
+        <li>It's easy to work on multiple user stories because each story is isolated in its own feature branch</li>
+        <li>We can use pull requests to perform code reviews before code is merged into <code>develop</code></li>
+      </ul>
     </section>
 
     <!-- End slides. -->
