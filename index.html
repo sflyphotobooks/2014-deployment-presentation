@@ -18,7 +18,7 @@
   <link rel="stylesheet" media="screen" href="extensions/scale/deck.scale.css">
 
   <!-- Style theme. More available in /themes/style/ or create your own. -->
-  <link rel="stylesheet" media="screen" href="themes/style/web-2.0.css">
+  <link rel="stylesheet" media="screen" href="themes/style/swiss.css">
 
   <!-- Transition theme. More available in /themes/transition/ or create your own. -->
   <link rel="stylesheet" media="screen" href="themes/transition/horizontal-slide.css">
@@ -32,18 +32,52 @@
 <body>
   <div class="deck-container">
 
+    <div style="display: none">
+      Introduction
+      Galleon Project Setup
+      Describe git
+      Describe git flow
+      Describe our usage of git flow
+      Continuous Integration
+      None of this works without a way to test code as early and often as possible
+      Running all unit tests against every push to github
+      Tests can't have heisenbugs
+      Creating release artifacts of every feature branch
+      Deployments
+      Throwing builds at beta
+      Every feature branch that passes unit tests should be deployed for functional testing
+      Emails to team upon deployment
+      Executing test suite against each build
+      Updating beta when develop changes
+      Current Deployment Pipeline
+      Soon Deployment Pipeline
+      Point out issues with git flow and continuous delivery
+      Reconciling manual code review step with merging into develop and retesting everything
+      Reconciling manual QE testing and automation against develop with multiple merges into develop
+      Reconciling PM acceptance testing against develop with multiple merges into develop
+      Next steps
+      Commenting on pull requests
+      Easing out production deployments
+      Running more tests on better environments
+    </div>
+
     <!-- Begin slides. Just make elements with a class of slide. -->
 
     <section class="slide">
-      <h1>Slide</h1>
+      <h2>Galleon Continuous Integration and Deployments</h2>
+      <p><a href="http://sflyphotobooks.github.io/2014-deployment-presentation/">http://sflyphotobooks.github.io/2014-deployment-presentation</a></p>
+      <p>Presented by: Jason Rose (jrose@shutterfly.com)</p>
     </section>
 
     <section class="slide">
-      <h1>Content</h1>
-    </section>
-
-    <section class="slide">
-      <h1>Here</h1>
+      <h2>Table of Contents</h2>
+      <ul>
+        <li>Galleon Project Overview</li>
+        <li>Galleon Development Workflow</li>
+        <li>Continuous Integration</li>
+        <li>Deployments</li>
+        <li>Next Steps</li>
+      </ul>
     </section>
 
     <!-- End slides. -->
