@@ -75,8 +75,8 @@
         <li><a href="#slide-2">Galleon Project Overview</a></li>
         <li><a href="#slide-3">Galleon Development Workflow</a></li>
         <li><a href="#slide-7">Continuous Integration</a></li>
-        <li>Deployments</li>
-        <li>Next Steps</li>
+        <li><a href="#slide-9">Deployments</a></li>
+        <li><a href="#slide-12">Next Steps</a></li>
       </ul>
     </section>
 
@@ -138,7 +138,7 @@
     </section>
 
     <section class="slide">
-      <h4 style="margin-top:200px;">We now have a rapid cycle from feature branch to develop, but how do we turn that into a build?</h4>
+      <h4 style="margin-top:200px; text-align: center;">We now have a rapid cycle from feature branch to develop, but how do we turn that into a build?</h4>
     </section>
 
     <section class="slide">
@@ -156,7 +156,74 @@
       <ul>
         <li>All unit tests and static code checks must demonstratably pass before work can be merged</li>
         <li>"It passes on my box!" is no longer an issue</li>
-        <li>Code changes require unit test coverage to pass code review</li>
+        <li>Code changes require unit testing to pass code review</li>
+      </ul>
+    </section>
+
+    <section class="slide">
+      <h2>Deployments</h2>
+      <ul>
+        <li>At the point that the pull request has been accepted, we can assert that:
+          <ul>
+            <li>All unit tests pass on our CI server</li>
+            <li>Code is lint-free and passes our other static analyses</li>
+            <li>The other developers on the team agree with the new feature's implementation</li>
+          </ul>
+        </li>
+        <li>Merging the feature branch into <code>develop</code> triggers a new build, with the checks and tests repeated</li>
+        <li>Successful builds of the <code>develop</code> branch are packaged and deployed to artifactory and beta</li>
+        <li>Since Galleon doesn't include Java code, we can deploy at-will (~5-10x daily)</li>
+      </ul>
+    </section>
+
+    <section class="slide">
+      <h2>Deployments (cont)</h2>
+      <h3>Why deploy more frequently to beta?</h3>
+      <ul>
+        <li>"D'oh" moments don't hold up the team</li>
+        <li>We can test smaller changes without worrying about breaking the app for hours</li>
+        <li>We can iterate with QE and PM over intended behavior and fixing bugs on a "real" server</li>
+        <li>It's possible to merge, deploy, test, and accept work within minutes</li>
+      </ul>
+    </section>
+
+    <section class="slide">
+      <h4 style="margin-top:200px; text-align: center;">Deploying often is nice and all, but where are you taking this?</h4>
+    </section>
+
+    <section class="slide">
+      <h2>Next Steps</h2>
+      <ul>
+        <li>Deploy feature branches to beta</li>
+        <li>Run automated functional tests against deployed feature branches</li>
+        <li>Swapping out the "primary" version of the application in a given environment</li>
+        <li>Email teams upon successful deployment</li>
+      </ul>
+    </section>
+
+    <section class="slide">
+      <h2>Next Steps</h2>
+      <h3>Deploying all feature branches to internal environments</h3>
+      <ul>
+        <li>The "primary" version of the app is always http://beta|dev|stage.shutterfly.com/pb/</li>
+        <li>Feature branches that pass the CI build end up at http://foo.shutterfly.com/pb/builds/x</li>
+        <li>
+          <ul>
+            <li>We can then run integration tests against a build on beta without interrupting other development</li>
+            <li>This lets us require the integration tests to pass before merging the feature branch, raising confidence in the build</li>
+          </ul>
+        </li>
+      </ul>
+    </section>
+
+    <section class="slide">
+      <h2>Next Steps</h2>
+      <h3>Manually updating primary deployed version</h3>
+      <ul>
+        <li>Since deployments are now decoupled from the version hosted at the canonical url, we can validate a build on-site</li>
+        <li>When a build passes testing, acceptance, and is ready to "go live", we swap the symlink for the primary version to our new version</li>
+        <li>Rolling back deploys becomes the simple process of swapping the symlink back to the old primary version</li>
+        <li>Once this mechanism is in place, we can phase-in production deployments through the load balancer</li>
       </ul>
     </section>
 
