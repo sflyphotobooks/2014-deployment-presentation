@@ -210,6 +210,7 @@
           <ul>
             <li>We can then run integration tests against a build on beta without interrupting other development</li>
             <li>This lets us require the integration tests to pass before merging the feature branch, raising confidence in the build</li>
+            <li>Running a test suite against the feature branch's deployment raise confidence about code changes</li>
           </ul>
         </li>
       </ul>
@@ -217,19 +218,9 @@
 
     <section class="slide">
       <h2>Next Steps (cont)</h2>
-      <h3>Running automated tests against deployed feature branches</h3>
-      <ul>
-        <li>Once each feature branch has their own url on beta, we can test them in isolation</li>
-        <li>Running a test suite against the deployment raise confidence about code changes</li>
-        <li>If the deployment and test suite are fast enough, we can require proof of success in a pull request</li>
-      </ul>
-    </section>
-
-    <section class="slide">
-      <h2>Next Steps (cont)</h2>
       <h3>Manually updating the primary deployed version</h3>
       <ul>
-        <li>Since deployments are now decoupled from the version hosted at the canonical url, we can validate a build on-site</li>
+        <li>Since deployments are now decoupled from the version hosted at <code>/pb/</code>, we can validate a build on-site</li>
         <li>When a build passes testing, acceptance, and is ready to "go live", we swap the symlink for the primary version to our new version</li>
         <li>Rolling back deploys becomes the simple process of swapping the symlink back to the old primary version</li>
       </ul>
@@ -239,7 +230,7 @@
       <h2>Next Steps (cont)</h2>
       <h3>Integration between CI and team</h3>
       <ul>
-        <li>If Jenkins is now managing the entire build and deployment process, we can add tooling to tighten the cycle
+        <li>If Jenkins is now managing the entire build and deployment process, we can add tooling to enhance the development to deployment cycle
           <ul>
             <li>It can send out emails to the team upon successful deployments</li>
             <li>It can automatically comment on pull requests once the build and deployment jobs run</li>
