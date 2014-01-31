@@ -104,7 +104,7 @@
         <li>One branch <code>develop</code> tracks the current active line of development</li>
         <li>Many "feature" branches track specific user stories
           <ul>
-            <li>Feature branches isolate in-progress work from QE and PM acceptance</li>
+            <li>Feature branches prevent in-progress work from interfering with QE and PM acceptance</li>
             <li>They are a short-lived sandbox so atomic units of work can be merged into <code>develop</code></li>
           </ul>
         </li>
@@ -115,7 +115,7 @@
       <h2>Galleon Development Workflow (cont)</h2>
       <h3>A developer's daily work pattern with git flow</h3>
       <ul>
-        <li><code>git pull</code> to update my local <code>develop</code> branch with everyone's merged work</li>
+        <li><code>git pull</code> to update my local <code>develop</code> branch with the team's merged work</li>
         <li><code>git checkout -b my-next-user-story</code> to create a feature branch for my upcoming work</li>
         <li><em>code, code, code, code, test, code, existential crisis, test...</em></li>
         <li><code>git add -A && git commit -m "All done!"</code> to stage my feature work</li>
@@ -197,12 +197,12 @@
         <li>Deploy feature branches to beta</li>
         <li>Run automated functional tests against deployed feature branches</li>
         <li>Swapping out the "primary" version of the application in a given environment</li>
-        <li>Email teams upon successful deployment</li>
+        <li>CI integration with team</li>
       </ul>
     </section>
 
     <section class="slide">
-      <h2>Next Steps</h2>
+      <h2>Next Steps (cont)</h2>
       <h3>Deploying all feature branches to internal environments</h3>
       <ul>
         <li>The "primary" version of the app is always http://beta|dev|stage.shutterfly.com/pb/</li>
@@ -216,13 +216,37 @@
     </section>
 
     <section class="slide">
-      <h2>Next Steps</h2>
-      <h3>Manually updating primary deployed version</h3>
+      <h2>Next Steps (cont)</h2>
+      <h3>Running automated tests against deployed feature branches</h3>
+      <ul>
+        <li>Once each feature branch has their own url on beta, we can test them in isolation</li>
+        <li>Running a test suite against the deployment raise confidence about code changes</li>
+        <li>If the deployment and test suite are fast enough, we can require proof of success in a pull request</li>
+      </ul>
+    </section>
+
+    <section class="slide">
+      <h2>Next Steps (cont)</h2>
+      <h3>Manually updating the primary deployed version</h3>
       <ul>
         <li>Since deployments are now decoupled from the version hosted at the canonical url, we can validate a build on-site</li>
         <li>When a build passes testing, acceptance, and is ready to "go live", we swap the symlink for the primary version to our new version</li>
         <li>Rolling back deploys becomes the simple process of swapping the symlink back to the old primary version</li>
         <li>Once this mechanism is in place, we can phase-in production deployments through the load balancer</li>
+      </ul>
+    </section>
+
+    <section class="slide">
+      <h2>Next Steps (cont)</h2>
+      <h3>Integration between CI and team</h3>
+      <ul>
+        <li>If Jenkins is now managing the entire build and deployment process, we can add tooling to tighten the cycle
+          <ul>
+            <li>It can send out emails to the team upon successful deployments</li>
+            <li>It can automatically comment on pull requests once the build and deployment jobs run</li>
+            <li>It can continue to comment on pull requests if the codebase changes, or <code>develop</code> changes upstream</li>
+          </ul>
+        </li>
       </ul>
     </section>
 
