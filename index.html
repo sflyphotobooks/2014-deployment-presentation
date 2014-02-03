@@ -74,9 +74,9 @@
       <ul>
         <li><a href="#slide-2">Galleon Project Overview</a></li>
         <li><a href="#slide-3">Galleon Development Workflow</a></li>
-        <li><a href="#slide-7">Continuous Integration</a></li>
-        <li><a href="#slide-9">Deployments</a></li>
-        <li><a href="#slide-12">Next Steps</a></li>
+        <li><a href="#slide-9">Continuous Integration</a></li>
+        <li><a href="#slide-11">Deployments</a></li>
+        <li><a href="#slide-14">Next Steps</a></li>
       </ul>
     </section>
 
@@ -134,6 +134,29 @@
         <li>Creation of QA-able builds for beta deployments is consistent because only fully-implemented user stories are merged into <code>develop</code></li>
         <li>It's easy to work on multiple user stories because each story is isolated in its own feature branch</li>
         <li>We can use pull requests to perform code reviews before code is merged into <code>develop</code></li>
+      </ul>
+    </section>
+
+    <section class="slide">
+      <h2>Galleon Development Workflow (cont)</h2>
+      <h3>Creating a production release</h3>
+      <ul>
+        <li>Once development has implemented the features for a release...</li>
+        <li><code>git checkout -b release-x.y</code></li>
+        <li><em>deploy, test, harden, work, work, work</em></li>
+        <li><code>git checkout master && git merge release-x.y</code></li>
+        <li><code>git checkout develop && git merge release-x.y</code></li>
+      </ul>
+    </section>
+
+    <section class="slide">
+      <h2>Galleon Development Workflow (cont)</h2>
+      <h3>Patching a production release</h3>
+      <ul>
+        <li><code>git checkout master && git checkout -b bugfix-x.y.1</code></li>
+        <li><em>work, work, test, deploy, harden</em></li>
+        <li><code>git checkout master && git merge bugfix-x.y.1</code></li>
+        <li><code>git checkout develop && git merge bugfix-x.y.1</code></li>
       </ul>
     </section>
 
