@@ -31,36 +31,6 @@
 </head>
 <body>
   <div class="deck-container">
-
-    <div style="display: none">
-      Introduction
-      Galleon Project Setup
-      Describe git
-      Describe git flow
-      Describe our usage of git flow
-      Continuous Integration
-      None of this works without a way to test code as early and often as possible
-      Running all unit tests against every push to github
-      Tests can't have heisenbugs
-      Creating release artifacts of every feature branch
-      Deployments
-      Throwing builds at beta
-      Every feature branch that passes unit tests should be deployed for functional testing
-      Emails to team upon deployment
-      Executing test suite against each build
-      Updating beta when develop changes
-      Current Deployment Pipeline
-      Soon Deployment Pipeline
-      Point out issues with git flow and continuous delivery
-      Reconciling manual code review step with merging into develop and retesting everything
-      Reconciling manual QE testing and automation against develop with multiple merges into develop
-      Reconciling PM acceptance testing against develop with multiple merges into develop
-      Next steps
-      Commenting on pull requests
-      Easing out production deployments
-      Running more tests on better environments
-    </div>
-
     <!-- Begin slides. Just make elements with a class of slide. -->
 
     <section class="slide">
@@ -76,7 +46,7 @@
         <li><a href="#slide-3">Galleon Development Workflow</a></li>
         <li><a href="#slide-9">Continuous Integration</a></li>
         <li><a href="#slide-11">Deployments</a></li>
-        <li><a href="#slide-14">Next Steps</a></li>
+        <li><a href="#slide-15">Next Steps</a></li>
       </ul>
     </section>
 
@@ -128,17 +98,6 @@
 
     <section class="slide">
       <h2>Galleon Development Workflow (cont)</h2>
-      <h3>Benefits of git flow</h3>
-      <ul>
-        <li>Creating patch releases for production issues is trivial because daily work doesn't affect <code>master</code></li>
-        <li>Creation of QA-able builds for beta deployments is consistent because only fully-implemented user stories are merged into <code>develop</code></li>
-        <li>It's easy to work on multiple user stories because each story is isolated in its own feature branch</li>
-        <li>We can use pull requests to perform code reviews before code is merged into <code>develop</code></li>
-      </ul>
-    </section>
-
-    <section class="slide">
-      <h2>Galleon Development Workflow (cont)</h2>
       <h3>Creating a production release</h3>
       <ul>
         <li>Once development has implemented the features for a release...</li>
@@ -157,6 +116,17 @@
         <li><em>work, work, test, deploy, harden</em></li>
         <li><code>git checkout master && git merge bugfix-x.y.1</code></li>
         <li><code>git checkout develop && git merge bugfix-x.y.1</code></li>
+      </ul>
+    </section>
+
+    <section class="slide">
+      <h2>Galleon Development Workflow (cont)</h2>
+      <h3>Benefits of git flow</h3>
+      <ul>
+        <li>Creating patch releases for production issues is trivial because daily work doesn't affect <code>master</code></li>
+        <li>Creation of QA-able builds for beta deployments is consistent because only fully-implemented user stories are merged into <code>develop</code></li>
+        <li>It's easy to work on multiple user stories because each story is isolated in its own feature branch</li>
+        <li>We can use pull requests to perform code reviews before code is merged into <code>develop</code></li>
       </ul>
     </section>
 
@@ -201,12 +171,23 @@
 
     <section class="slide">
       <h2>Deployments (cont)</h2>
-      <h3>Why deploy more frequently to beta?</h3>
+      <h3>Why deploy more frequently?</h3>
       <ul>
         <li>"D'oh" moments don't hold up the team</li>
         <li>We can test smaller changes without worrying about breaking the app for hours</li>
         <li>We can iterate with QE and PM over intended behavior and fixing bugs on a "real" server</li>
         <li>It's possible to merge, deploy, test, and accept work within minutes</li>
+      </ul>
+    </section>
+
+    <section class="slide">
+      <h2>Deployments (cont)</h2>
+      <h3>Deploying all feature branches to internal environments</h3>
+      <ul>
+        <li>The "primary" version of the app is always http://beta|dev|stage.shutterfly.com/pb/</li>
+        <li>Feature branches that pass the CI build end up at http://foo.shutterfly.com/pb/builds/x
+        <li>We can now preview a code change on a real environment before merging it into <code>develop</code></li>
+        <li>If a change is merged into <code>develop</code>, we update <code>/pb/</code> to link to that build</li>
       </ul>
     </section>
 
@@ -217,7 +198,6 @@
     <section class="slide">
       <h2>Next Steps</h2>
       <ul>
-        <li>Deploy feature branches to beta</li>
         <li>Run automated functional tests against deployed feature branches</li>
         <li>Swapping out the "primary" version of the application in a given environment</li>
         <li>CI integration with team</li>
@@ -226,16 +206,11 @@
 
     <section class="slide">
       <h2>Next Steps (cont)</h2>
-      <h3>Deploying all feature branches to internal environments</h3>
+      <h3>Run automated functional tests against deployed feature branches</h3>
       <ul>
-        <li>The "primary" version of the app is always http://beta|dev|stage.shutterfly.com/pb/</li>
-        <li>Feature branches that pass the CI build end up at http://foo.shutterfly.com/pb/builds/x
-          <ul>
-            <li>We can then run integration tests against a build on beta without interrupting other development</li>
-            <li>This lets us require the integration tests to pass before merging the feature branch, raising confidence in the build</li>
-            <li>Running a test suite against the feature branch's deployment raise confidence about code changes</li>
-          </ul>
-        </li>
+        <li>We can run integration tests against a specific build on beta without interrupting other development</li>
+        <li>This lets us require the integration tests to pass before merging the feature branch, raising confidence in the build</li>
+        <li>We can catch more regression issues before merging code and handing off to QE</li>
       </ul>
     </section>
 
@@ -256,7 +231,7 @@
         <li>If Jenkins is now managing the entire build and deployment process, we can add tooling to enhance the development to deployment cycle
           <ul>
             <li>It can send out emails to the team upon successful deployments</li>
-            <li>It can automatically comment on pull requests once the build and deployment jobs run</li>
+            <li>It can comment on pull requests once the build and deployment jobs run</li>
             <li>It can continue to comment on pull requests if the codebase changes, or <code>develop</code> changes upstream</li>
           </ul>
         </li>
